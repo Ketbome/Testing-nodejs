@@ -1,15 +1,12 @@
-const { MongoClient, ObjectId } = require('mongodb');
-const { config } = require('../config');
+const { MongoClient, ObjectId } = require("mongodb");
+const { config } = require("../config");
 
 const DB_NAME = config.dbName;
 const MONGO_URI = config.dbUrl;
 
 class MongoLib {
   constructor() {
-    this.client = new MongoClient(MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    this.client = new MongoClient(MONGO_URI);
     this.dbName = DB_NAME;
   }
 
@@ -40,9 +37,7 @@ class MongoLib {
 
   async update(collection, id, data) {
     const db = await this.connect();
-    await db
-      .collection(collection)
-      .updateOne({ _id: ObjectId(id) }, { $set: data }, { upsert: true });
+    await db.collection(collection).updateOne({ _id: ObjectId(id) }, { $set: data }, { upsert: true });
     return this.get(collection, id);
   }
 
