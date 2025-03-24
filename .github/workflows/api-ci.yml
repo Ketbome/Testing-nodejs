@@ -40,5 +40,5 @@ jobs:
       - name: Run E2E tests
         run: npm run test:e2e
         env:
-          DB_URL: mongodb://localhost:27017/test_db
-          DB_NAME: test_db
+          MONGO_URL: mongodb://localhost:27017/test_db
+          MONGO_DB_NAME: test_db
