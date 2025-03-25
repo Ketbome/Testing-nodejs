@@ -34,14 +34,21 @@ jobs:
         with:
           node-version: "18"
           cache: "npm"
+          cache-dependency-path: "api-test/package.json"
+
+      - name: Navigate to api-test directory
+        run: cd api-test
 
       - name: Install dependencies
+        working-directory: ./api-test
         run: npm ci
 
       - name: Run unit tests
+        working-directory: ./api-test
         run: npm run test
 
       - name: Run E2E tests
+        working-directory: ./api-test
         run: npm run test:e2e
         env:
           MONGO_URL: mongodb://localhost:27017/test_db
