@@ -3,8 +3,12 @@ name: Tests
 on:
   push:
     branches: [main]
+    paths:
+      - "api-test/**"
   pull_request:
     branches: [main]
+    paths:
+      - "api-test/**"
 
 jobs:
   tests:
