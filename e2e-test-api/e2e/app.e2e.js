@@ -21,23 +21,23 @@ describe("tests for app", () => {
     expect(response.headers["content-type"]).toMatch(/json/);
   });
 
-  describe('Test for /nueva-ruta', () => {
-    test('should return 401 without API key', async () => {
-      const response = await request(app).get('/nueva-ruta');
+  describe("Test for /nueva-ruta", () => {
+    test("should return 401 without API key", async () => {
+      const response = await request(app).get("/nueva-ruta");
       expect(response.statusCode).toBe(401);
     });
 
-    it('should return 401 with invalid API key', async () => {
+    it("should return 401 with invalid API key", async () => {
       const response = await request(app)
-        .get('/nueva-ruta')
-        .set('API', 'invalid-api-key');
+        .get("/nueva-ruta")
+        .set("API", "invalid-api-key");
       expect(response.statusCode).toBe(401);
     });
 
-    it('should return 200 with valid API key', async () => {
+    it("should return 200 with valid API key", async () => {
       const response = await request(app)
-        .get('/nueva-ruta')
-        .set('API', config.apiKey);
+        .get("/nueva-ruta")
+        .set("API", config.apiKey);
       expect(response.statusCode).toBe(200);
     });
   });
